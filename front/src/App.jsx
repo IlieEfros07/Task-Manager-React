@@ -6,7 +6,7 @@ import { QueryClient, QueryClientProvider } from "react-query";
 const queryClient = new QueryClient();
 
 function App() {
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(true);
 
   const toggleTheme = () => {
     setIsDarkMode(!isDarkMode);
@@ -30,7 +30,7 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <div
-        class={`flex items-center justify-center min-h-screen ${
+        class={`mt-10 flex items-center justify-center min-h-screen ${
           isDarkMode ? "bg-gray-900" : "bg-gray-100"
         }`}
       >
