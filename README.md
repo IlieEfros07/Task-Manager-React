@@ -18,7 +18,7 @@ A simple task manager API built with Express.js that allows users to create, upd
 ### Setup
 Clone the repository and navigate to the project directory:
 ```sh
-git clone <https://github.com/IlieEfros07/Task-Manager-React>
+git clone https://github.com/IlieEfros07/Task-Manager-React
 cd /Task-Manager-React
 ```
 
@@ -40,18 +40,18 @@ npm start
 ```
 The server will run on `http://localhost:3107`.
 
-Running the Frontend
-
+## Running the Frontend
 Navigate to the frontend directory and install dependencies:
-
+```sh
 cd front
 npm install
+```
 
 Start the frontend development server:
-
+```sh
 npm run dev
-
-The frontend will run on http://localhost:5173 (or another available port).
+```
+The frontend will run on `http://localhost:5173` (or another available port).
 
 ## API Endpoints
 
@@ -64,5 +64,12 @@ The frontend will run on http://localhost:5173 (or another available port).
 ### AI Task Suggestions
 - **POST /api/v1/tasks/suggest** → Get a suggested task based on input
 
+## Usage
+You can test the API using tools like Postman or cURL. Example request to create a task:
+```sh
+curl -X POST "http://localhost:3107/api/v1/tasks" -H "Content-Type: application/json" -d '{"title": "New Task"}'
+```
 
+## License
+This project is open-source under the MIT License.
 
