@@ -40,6 +40,19 @@ npm start
 ```
 The server will run on `http://localhost:3107`.
 
+Running the Frontend
+
+Navigate to the frontend directory and install dependencies:
+
+cd front
+npm install
+
+Start the frontend development server:
+
+npm run dev
+
+The frontend will run on http://localhost:5173 (or another available port).
+
 ## API Endpoints
 
 ### Task Management
