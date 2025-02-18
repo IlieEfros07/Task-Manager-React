@@ -70,6 +70,4 @@ You can test the API using tools like Postman or cURL. Example request to create
 curl -X POST "http://localhost:3107/api/v1/tasks" -H "Content-Type: application/json" -d '{"title": "New Task"}'
 ```
 
-## License
-This project is open-source under the MIT License.
 
