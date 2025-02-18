@@ -8,10 +8,32 @@ const TaskList = () => {
     onSuccess: () => queryClient.invalidateQueries("tasks"),
   });
   const updateMutation = useMutation(updateTask, {
-    onSuccess: () => queryClient.invalidateQueries("tasks"),
+    onMutate: async (updatedTask) => {
+      await queryClient.cancelQueries("tasks");
+      const previousTasks = queryClient.getQueryData("tasks");
+
+      queryClient.setQueryData("tasks", (old) =>
+        old.map((task) =>
+          task.id === updatedTask.id ? { ...task, ...updatedTask } : task
+        )
+      );
+
+      return { previousTasks };
+    },
+    onError: (err, newTask, context) => {
+      queryClient.setQueryData("tasks", context.previousTasks);
+    },
+    onSettled: () => {
+      queryClient.invalidateQueries("tasks");
+    },
   });
 
-  if (isLoading) return <p>Loading...</p>;
+  // In TaskList.jsx
+
+    updateMutation.isLoading && (
+      <p className="text-blue-500">Updating task...</p>
+    );
+
 
   return (
     <>
@@ -23,16 +45,20 @@ const TaskList = () => {
           >
             <div class="flex items-center ">
               <input
-                class="mr-4 h-6 w-6 text-blue-500 border-gray-300 rounded-full focus:ring-blue-500"
+                className="mr-4 h-6 w-6 text-blue-500 border-gray-300 rounded-full focus:ring-blue-500"
                 type="checkbox"
-                checked={task.completed}
+                checked={task.completed || false}
                 onChange={() =>
-                  updateMutation.mutate(task.id, {
-                    ...task,
+                  updateMutation.mutate({
+                    id: task.id,
                     completed: !task.completed,
                   })
                 }
+                aria-label={`Mark task "${task.title}" as ${
+                  task.completed ? "incomplete" : "completed"
+                }`}
               />
+
               <span
                 class={`text-lg ${
                   task.completed ? "line-through text-gray-500" : "text-white"
