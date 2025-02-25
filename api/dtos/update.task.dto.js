@@ -6,12 +6,12 @@ export const UpdateTaskDTO = [
     .trim()
     .notEmpty()
     .withMessage("Title cannot be empty")
-    .isLength({ min: 3, max: 100 })
+    .isLength({ min: 3, max: 2000 })
     .withMessage("Title must be between 3 and 100 characters"),
   body("description")
     .optional()
-    .isLength({ max: 255 })
-    .withMessage("Description must be at most 255 characters"),
+    .isLength({ max: 2000 })
+    .withMessage("Description must be at most 2000 characters"),
   body("completed")
     .optional()
     .isBoolean()

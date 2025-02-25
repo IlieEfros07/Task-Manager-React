@@ -1,19 +1,19 @@
 import { generateTaskSuggestion } from "../services/aiService.js";
 
-export const getTaskSuggestion = async (req, res) => {
-  try {
-    const { input } = req.body;
+const getTaskSuggestion = async (req, res) => {
+  const { prompt } = req.body;
 
-    if (!input) {
-      return res.status(400).json({ error: "Input is required" });
-    }
-
-    const suggestion = await generateTaskSuggestion(input);
-    return res.status(200).json({ suggestion });
-  } catch (error) {
-    console.error("Error in AI controller:", error);
-    return res
-      .status(500)
-      .json({ error: "Failed to generate task suggestion" });
+  if (!prompt) {
+    return res.status(400).json({ error: "Prompt is required" });
   }
+
+  const result = await generateTaskSuggestion(prompt);
+
+  if (result.error) {
+    return res.status(500).json({ error: result.error });
+  }
+
+  res.json(result);
 };
+
+export { getTaskSuggestion };

@@ -1,14 +1,24 @@
-import axios from "axios";
-
-export const generateTaskSuggestion = async (input) => {
+export const generateTaskSuggestion = async (prompt) => {
   try {
-    const response = await axios.post(
-      "http://localhost:3107/api/v1/tasks/generate-task-suggestion",
-      { input }
+    const response = await fetch(
+      "http://localhost:3107/api/v1/tasks/generate",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ prompt }),
+      }
     );
-    return response.data.suggestion;
+
+    if (!response.ok) {
+      const error = await response.json();
+      throw new Error(error.message || "Failed to fetch task suggestion");
+    }
+
+    return await response.json();
   } catch (error) {
-    console.error("Error generating task suggestion:", error);
-    return "Sorry, there was an error generating the suggestion.";
+    console.error("Error generating task suggestion:", error.message);
+    return { error: "Failed to generate task suggestion" };
   }
 };

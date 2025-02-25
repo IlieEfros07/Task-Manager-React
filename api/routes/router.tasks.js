@@ -15,6 +15,6 @@ export const TasksRouter = Router();
 
 TasksRouter.get("/", GetTasksController);
 TasksRouter.post("/", CreateTaskDTO, ValidateDTO, PostTaskController);
-TasksRouter.post("/generate-task-suggestion", getTaskSuggestion);
+TasksRouter.post("/generate", getTaskSuggestion);
 TasksRouter.put("/:id", UpdateTaskDTO, ValidateDTO, PutTaskController);
 TasksRouter.delete("/:id", DeleteTaskController)
