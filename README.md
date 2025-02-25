@@ -34,7 +34,7 @@ npm install
 
 ## Environment Variables
 
-Create a `.env` file in the root directory and add your [https://forefront.ai/](Forefront) API key:
+Create a `.env` file in the root directory and add your [Forefront](https://forefront.ai) API key:
 ```
 FOREFRONT_API_KEY=your_forefront_api_key
 ```
