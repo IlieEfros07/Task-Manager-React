@@ -1,3 +1,5 @@
+![Screenshot 2](https://i.imgur.com/f0WCLzO.jpg)
+
 # Task Manager API
 
 A full-stack task manager application with a React frontend and Express.js backend that allows users to create, update, delete, and retrieve tasks. The application features AI-powered step-by-step guides for tasks using OpenAI's API.
